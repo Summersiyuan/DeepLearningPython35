@@ -10,5 +10,10 @@ The testing file (**test.py**) contains all three networks (network.py, network2
 
 In test.py there are examples of networks configurations with proper comments. I did that to relate with particular chapters from the book.
 
+abc
 
-123
+
+def
+
+
+hij
