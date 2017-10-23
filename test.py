@@ -11,7 +11,7 @@
         4th param is learning rate (eta)
 
     Author:
-        Michał Dobrzański, 2016
+        
         dobrzanski.michal.daniel@gmail.com
 """
 
@@ -124,6 +124,7 @@ net.SGD(training_data, 30, 10, 0.1,
 
 
 """
+"""
 def testTheano():
     from theano import function, config, shared, sandbox
     import theano.tensor as T
@@ -149,8 +150,8 @@ def testTheano():
         print('Used the gpu')
 # Perform check:
 #testTheano()
-
-
+"""
+"""
 # ----------------------
 # - network3.py example:
 import network3
@@ -160,7 +161,7 @@ from network3 import Network, ConvPoolLayer, FullyConnectedLayer, SoftmaxLayer #
 training_data, validation_data, test_data = network3.load_data_shared()
 # mini-batch size:
 mini_batch_size = 10
-
+"""
 # chapter 6 - shallow architecture using just a single hidden layer, containing 100 hidden neurons.
 '''
 net = Network([
@@ -193,7 +194,7 @@ net = Network([
     SoftmaxLayer(n_in=100, n_out=10)], mini_batch_size)
 net.SGD(training_data, 60, mini_batch_size, 0.1, validation_data, test_data)
 '''
-
+"""
 # chapter 6 -  rectified linear units and some l2 regularization (lmbda=0.1) => even better accuracy
 from network3 import ReLU
 net = Network([
@@ -208,3 +209,4 @@ net = Network([
     FullyConnectedLayer(n_in=40*4*4, n_out=100, activation_fn=ReLU),
     SoftmaxLayer(n_in=100, n_out=10)], mini_batch_size)
 net.SGD(training_data, 60, mini_batch_size, 0.03, validation_data, test_data, lmbda=0.1)
+"""
