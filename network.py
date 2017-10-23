@@ -34,7 +34,9 @@ class Network(object):
         ever used in computing the outputs from later layers."""
         self.num_layers = len(sizes)
         self.sizes = sizes
+        #创建偏置量矩阵，高斯分布，均值为0
         self.biases = [np.random.randn(y, 1) for y in sizes[1:]]
+        #创建权重矩阵，高斯分布，均值为0
         self.weights = [np.random.randn(y, x)
                         for x, y in zip(sizes[:-1], sizes[1:])]
 
@@ -64,9 +66,11 @@ class Network(object):
 
         for j in range(epochs):
             random.shuffle(training_data)
+            #创建单位为10的小批量训练数据，格式为列表，每个元素含有十个训练输入，可以理解为一个数据包
             mini_batches = [
                 training_data[k:k+mini_batch_size]
                 for k in range(0, n, mini_batch_size)]
+            #每次选取一个元素（数据包）更新权值和偏置
             for mini_batch in mini_batches:
                 self.update_mini_batch(mini_batch, eta)
             if test_data:
@@ -97,7 +101,7 @@ class Network(object):
         to ``self.biases`` and ``self.weights``."""
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
-        # feedforward
+        # ---------feedforward--------------
         activation = x
         activations = [x] # list to store all the activations, layer by layer
         zs = [] # list to store all the z vectors, layer by layer
@@ -106,7 +110,7 @@ class Network(object):
             zs.append(z)
             activation = sigmoid(z)
             activations.append(activation)
-        # backward pass
+        # ---------backward pass----
         delta = self.cost_derivative(activations[-1], y) * \
             sigmoid_prime(zs[-1])
         nabla_b[-1] = delta
